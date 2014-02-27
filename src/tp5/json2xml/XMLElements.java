@@ -1,8 +1,6 @@
-package tp5.json;
+package tp5.json2xml;
 
-public class JSONString extends JSONValeur {
-	
-	private String value;
+public class XMLElements implements IXMLEncoder {
 
 	@Override
 	public String toXML() {

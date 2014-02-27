@@ -1,15 +1,15 @@
-package tp5.json;
+package tp5.json2xml;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class JSONArray extends JSONValeur {
+public class XMLArray extends XMLValeur {
 	
-	private List<JSONElements> array;
+	private List<XMLElements> array;
 	
-	public JSONArray() {
-		this.array = new ArrayList<JSONElements>();
+	public XMLArray() {
+		this.array = new ArrayList<XMLElements>();
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class JSONArray extends JSONValeur {
 		} else {
 			StringBuffer sb = new StringBuffer("<array>");
 			
-			Iterator<JSONElements> iter = this.array.iterator();
+			Iterator<XMLElements> iter = this.array.iterator();
 			
 			if (iter.hasNext())
 				sb.append(iter.next().toXML());

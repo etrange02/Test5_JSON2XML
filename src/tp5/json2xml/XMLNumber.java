@@ -1,6 +1,6 @@
-package tp5.json;
+package tp5.json2xml;
 
-public class JSONNumber extends JSONValeur {
+public class XMLNumber extends XMLValeur {
 	
 	private int value;
 

@@ -1,4 +1,4 @@
-package tp5.json;
+package tp5.json2xml;
 
 public interface IXMLEncoder {
 

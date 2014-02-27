@@ -1,6 +1,6 @@
-package tp5.json;
+package tp5.json2xml;
 
-public class JSONNull extends JSONValeur {
+public class XMLNull extends XMLValeur {
 
 	@Override
 	public String toXML() {

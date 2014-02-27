@@ -1,9 +1,9 @@
-package tp5.json;
+package tp5.json2xml;
 
-public class JSONPaire implements IXMLEncoder {
+public class XMLPaire implements IXMLEncoder {
 
 	private String nom;
-	private JSONValeur valeur;
+	private XMLValeur valeur;
 	@Override
 	public String toXML() {
 		// TODO Auto-generated method stub
