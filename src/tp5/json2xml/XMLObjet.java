@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class XMLObject extends XMLValeur {
+public class XMLObjet extends XMLValeur {
 	
-	private List<XMLPaire> paires;
+	private List<XMLExpression> paires;
 	
-	public XMLObject() {
-		this.paires = new ArrayList<XMLPaire>();
+	public XMLObjet() {
+		this.paires = new ArrayList<XMLExpression>();
+	}
+	
+	public void add(XMLExpression e) {
+		this.paires.add(e);
 	}
 
 	@Override
@@ -19,9 +23,9 @@ public class XMLObject extends XMLValeur {
 		} else {
 			StringBuffer sb = new StringBuffer("<object>");
 			
-			Iterator<XMLPaire> iter = this.paires.iterator();
+			Iterator<XMLExpression> iter = this.paires.iterator();
 			
-			if (iter.hasNext())
+			while (iter.hasNext())
 				sb.append(iter.next());
 			
 			sb.append("</object>");

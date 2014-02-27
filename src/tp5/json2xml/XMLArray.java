@@ -6,10 +6,14 @@ import java.util.List;
 
 public class XMLArray extends XMLValeur {
 	
-	private List<XMLElements> array;
+	private List<XMLExpression> array;
 	
 	public XMLArray() {
-		this.array = new ArrayList<XMLElements>();
+		this.array = new ArrayList<XMLExpression>();
+	}
+	
+	public void add(XMLExpression e) {
+		this.array.add(e);
 	}
 
 	@Override
@@ -19,12 +23,8 @@ public class XMLArray extends XMLValeur {
 		} else {
 			StringBuffer sb = new StringBuffer("<array>");
 			
-			Iterator<XMLElements> iter = this.array.iterator();
-			
-			if (iter.hasNext())
-				sb.append(iter.next().toXML());
+			Iterator<XMLExpression> iter = this.array.iterator();
 			while (iter.hasNext()) {
-				sb.append(","); /////// Attention, je n'en suis pas sûr
 				sb.append(iter.next().toXML());
 			}
 			sb.append("</array>");

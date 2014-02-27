@@ -1,6 +1,6 @@
 package tp5.json2xml;
 
-public class XMLElements implements IXMLEncoder {
+public abstract class XMLExpression implements IXMLEncoder {
 
 	@Override
 	public String toXML() {

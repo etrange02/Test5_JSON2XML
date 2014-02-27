@@ -1,6 +1,6 @@
 package tp5.json2xml;
 
-public class XMLErreur implements IXMLEncoder {
+public class XMLErreur extends XMLExpression {
 
 	@Override
 	public String toXML() {
