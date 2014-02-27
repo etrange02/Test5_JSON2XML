@@ -26,7 +26,7 @@ public class XMLObjet extends XMLValeur {
 			Iterator<XMLExpression> iter = this.paires.iterator();
 			
 			while (iter.hasNext())
-				sb.append(iter.next());
+				sb.append(iter.next().toXML());
 			
 			sb.append("</object>");
 			return sb.toString();

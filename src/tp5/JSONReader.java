@@ -39,7 +39,7 @@ public class JSONReader {
 		}
 		
 		String outputName = args[0].substring(0, args[0].lastIndexOf('.'));
-		outputName.concat("xml");
+		outputName = outputName.concat(".result.xml");
 		
 		FileReader fr = null;
 		FileWriter fw = null;
@@ -51,9 +51,10 @@ public class JSONReader {
 			XMLExpression e = new JSONReader().parse(parser.parse(fr));
 			
 			fw = new FileWriter(outputName);
-			fw.write(e.toXML());
 			
-			
+			String res = e.toXML();
+			System.out.println(res);
+			fw.write(res);
 			
 			fr.close();
 			fw.close();
@@ -62,6 +63,8 @@ public class JSONReader {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -134,16 +137,16 @@ public class JSONReader {
 				p.setValeur(parseArray((JSONArray) entry.getValue()));
 			} else if (entry.getValue() instanceof JSONObject) {
 				p.setValeur(parseObject((JSONObject) entry.getValue()));
-			} else if (String.valueOf(entry.getKey()).equals("true")) {
+			} else if (String.valueOf(entry.getValue()).equals("true")) {
 				p.setValeur(new XMLTrue());
-			} else if (String.valueOf(entry.getKey()).equals("false")) {
+			} else if (String.valueOf(entry.getValue()).equals("false")) {
 				p.setValeur(new XMLFalse());
-			} else if (String.valueOf(entry.getKey()).equals("null")) {
+			} else if (String.valueOf(entry.getValue()).equals("null")) {
 				p.setValeur(new XMLNull());
-			} else if (isInteger(String.valueOf(entry.getKey()))) {
-				p.setValeur(new XMLNumber(String.valueOf(entry.getKey())));
+			} else if (isInteger(String.valueOf(entry.getValue()))) {
+				p.setValeur(new XMLNumber(String.valueOf(entry.getValue())));
 			} else {
-				p.setValeur(new XMLString(String.valueOf(entry.getKey())));
+				p.setValeur(new XMLString(String.valueOf(entry.getValue())));
 			}
 			
 			object.add(p);
@@ -153,7 +156,13 @@ public class JSONReader {
 	}
 	
 	private boolean isInteger(String s) {
-		for (int i = 0; i < s.length(); ++i) {
+		if ( !(
+					s.length() > 0 && Character.isDigit(s.charAt(0))
+				||  s.length() > 1 && (s.charAt(0) == '+' || s.charAt(0) == '-' )
+				)
+			)
+		
+		for (int i = 1; i < s.length(); ++i) {
 			if (Character.isDigit(s.charAt(i))) {
 				return false;
 			}
