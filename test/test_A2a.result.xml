@@ -1,9 +1,0 @@
-<object>
-	<item name="myComposedValue">
-		<object>
-			<item name="myBool">
-				<true/>
-			</item>
-		</object>
-	</item>
-</object>
