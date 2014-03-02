@@ -105,15 +105,13 @@ public class JSONReader {
 				} else {
 					array.add(new XMLErreur());
 				}
+			} else if (o instanceof Long) {
+				array.add(new XMLNumber(o.toString()));
 			} else if (o instanceof String) {	
 				String s = (String) o;
-				
-				if (isInteger(s)) {
-					array.add(new XMLNumber(s));
-				} else {
-					array.add(new XMLString(s));
-				}
+				array.add(new XMLString(s));
 			} else {
+				System.out.println(o.getClass().toString());
 				array.add(new XMLErreur());
 			}
 		}
@@ -147,7 +145,7 @@ public class JSONReader {
 				} else {
 					p.setValeur(new XMLErreur());
 				}
-			} else if (isInteger(String.valueOf(entry.getValue()))) {
+			} else if (entry.getValue() instanceof Long) {
 				p.setValeur(new XMLNumber(String.valueOf(entry.getValue())));
 			} else {
 				p.setValeur(new XMLString(String.valueOf(entry.getValue())));
@@ -160,19 +158,18 @@ public class JSONReader {
 	}
 	
 	private boolean isInteger(String s) {
-		if ( !(
-					s.length() > 0 && Character.isDigit(s.charAt(0))
-				||  s.length() > 1 && (s.charAt(0) == '+' || s.charAt(0) == '-' )
-				)
+		if (    s.length() > 0 && Character.isDigit(s.charAt(0))
+				|| s.length() > 1 && (s.charAt(0) == '+' || s.charAt(0) == '-' )
 			)
-			return false;
-		
-		for (int i = 1; i < s.length(); ++i) {
-			if (Character.isDigit(s.charAt(i))) {
-				return false;
+		{
+			for (int i = 1; i < s.length(); ++i) {
+				if (!Character.isDigit(s.charAt(i))) {
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 }

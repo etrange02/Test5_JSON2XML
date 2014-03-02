@@ -1,1 +1,1 @@
-<object><item name="myInt"><string>10</string></item><item name="myArray"><array><true/><false/><null/></array></item><item name="myObject"><object><item name="myBool"><true/></item></object></item><item name="myString"><string>myString</string></item></object>
+<object><item name="myInt"><number>10</number></item><item name="myArray"><array><true/><false/><null/></array></item><item name="myObject"><object><item name="myBool"><true/></item></object></item><item name="myString"><string>myString</string></item></object>
