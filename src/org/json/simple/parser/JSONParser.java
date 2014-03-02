@@ -139,8 +139,8 @@ public class JSONParser {
 								valueStack.addFirst(createArrayContainer(containerFactory));
 								break;
 							default:
-								statusStack.addFirst(new Integer(status));
-								valueStack.addFirst(new JSONOtherError());
+								//statusStack.addFirst(new Integer(status));
+								//valueStack.addFirst(new JSONOtherError());
 								status=S_IN_ERROR;
 						}//inner switch
 						break;
@@ -180,8 +180,8 @@ public class JSONParser {
 								}
 								break;
 							default:
-								statusStack.addFirst(new Integer(status));
-								valueStack.addFirst(new JSONOtherError());
+								//statusStack.addFirst(new Integer(status));
+								//valueStack.addFirst(new JSONOtherError());
 								status=S_IN_ERROR;
 								break;
 						}//inner switch
@@ -219,8 +219,8 @@ public class JSONParser {
 								valueStack.addFirst(newObject);
 								break;
 							default:
-								statusStack.addFirst(new Integer(status));
-								valueStack.addFirst(new JSONOtherError());
+								//statusStack.addFirst(new Integer(status));
+								//valueStack.addFirst(new JSONOtherError());
 								status=S_IN_ERROR;
 						}
 						break;
@@ -260,8 +260,8 @@ public class JSONParser {
 								valueStack.addFirst(newArray);
 								break;
 							default:
-								statusStack.addFirst(new Integer(status));
-								valueStack.addFirst(new JSONOtherError());
+								//statusStack.addFirst(new Integer(status));
+								//valueStack.addFirst(new JSONOtherError());
 								status=S_IN_ERROR;
 						}//inner switch
 						break;
