@@ -1,8 +1,9 @@
 {
 	"myString" : "myString",
 	"myInt"	   : 10,
-	"myArray"  : [true, false, null]
-	{
-		"myBool" : true
-	}
+	"myArray"  : [true, false, null],
+	"myObject" : 
+		{
+			"myBool" : true
+		}
 }

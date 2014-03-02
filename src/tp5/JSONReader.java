@@ -90,27 +90,25 @@ public class JSONReader {
 		
 		while (iter.hasNext()) {
 			o = iter.next();
-			/*if (o instanceof JSONValue) {
-				JSONValue v = (JSONValue) o;
-			} else {
-				array.add(new XMLErreur());
-			}*/
 			
-			
-			if (o instanceof JSONArray) {
+			if (o == null) {
+				array.add(new XMLNull());
+			} else if (o instanceof JSONArray) {
 				array.add(parseArray((JSONArray) o));
 			} else if (o instanceof JSONObject) {
 				array.add(parseObject((JSONObject) o));
+			} else if (o instanceof Boolean) {
+				if (o.toString().equals("true")) {
+					array.add(new XMLTrue());
+				} else if (o.toString().equals("false")) {
+					array.add(new XMLFalse());
+				} else {
+					array.add(new XMLErreur());
+				}
 			} else if (o instanceof String) {	
 				String s = (String) o;
 				
-				if (s.equals("true")) {
-					array.add(new XMLTrue());
-				} else if (s.equals("false")) {
-					array.add(new XMLFalse());
-				} else if (s.equals("null")) {
-					array.add(new XMLNull());
-				} else if (isInteger(s)) {
+				if (isInteger(s)) {
 					array.add(new XMLNumber(s));
 				} else {
 					array.add(new XMLString(s));
@@ -135,16 +133,20 @@ public class JSONReader {
 			p = new XMLPaire();
 			p.setNom(String.valueOf(entry.getKey()));
 			
-			if (entry.getValue() instanceof JSONArray) {
+			if (entry.getValue() == null) {
+				p.setValeur(new XMLNull());
+			} else if (entry.getValue() instanceof JSONArray) {
 				p.setValeur(parseArray((JSONArray) entry.getValue()));
 			} else if (entry.getValue() instanceof JSONObject) {
 				p.setValeur(parseObject((JSONObject) entry.getValue()));
-			} else if (String.valueOf(entry.getValue()).equals("true")) {
-				p.setValeur(new XMLTrue());
-			} else if (String.valueOf(entry.getValue()).equals("false")) {
-				p.setValeur(new XMLFalse());
-			} else if (String.valueOf(entry.getValue()).equals("null")) {
-				p.setValeur(new XMLNull());
+			} else if (entry.getValue() instanceof Boolean) {
+				if (entry.getValue().toString().equals("true")) {
+					p.setValeur(new XMLTrue());
+				} else if (entry.getValue().toString().equals("false")) {
+					p.setValeur(new XMLFalse());
+				} else {
+					p.setValeur(new XMLErreur());
+				}
 			} else if (isInteger(String.valueOf(entry.getValue()))) {
 				p.setValeur(new XMLNumber(String.valueOf(entry.getValue())));
 			} else {
