@@ -46,21 +46,23 @@ public class JSONReader {
 		
 		try {
 			fr = new FileReader(new File(args[0]));
-			
-			JSONParser parser = new JSONParser();
-			XMLExpression e = new JSONReader().parse(parser.parse(fr));
-			
 			fw = new FileWriter(outputName);
+			String res;
 			
-			String res = e.toXML();
+			try {
+				JSONParser parser = new JSONParser();
+				XMLExpression e = new JSONReader().parse(parser.parse(fr));
+				res = e.toXML();
+			} catch(ParseException e) {
+				res = "<ERREUR/>";
+			}
+			
 			System.out.println(res);
 			fw.write(res);
 			
 			fr.close();
 			fw.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
