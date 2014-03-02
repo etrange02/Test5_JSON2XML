@@ -163,6 +163,7 @@ public class JSONReader {
 				||  s.length() > 1 && (s.charAt(0) == '+' || s.charAt(0) == '-' )
 				)
 			)
+			return false;
 		
 		for (int i = 1; i < s.length(); ++i) {
 			if (Character.isDigit(s.charAt(i))) {
